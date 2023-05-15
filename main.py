@@ -119,26 +119,19 @@ class Calc:
         
     def formatChange(self, format):
         global FORMAT_TYPE
-        FORMAT_TYPE = format
-        print(FORMAT_TYPE)
-
-
-
-        
+        FORMAT_TYPE = format      
 
 
 def calcAnswer(expression):
     try:
         result = eval(expression)
         #dont need eval if base 10
-        print("sdf" + FORMAT_TYPE)
         if FORMAT_TYPE == "octal":
             result = format(result, 'o')
         elif FORMAT_TYPE == "hexadecimal":
             result = format(result, 'x')
         elif FORMAT_TYPE == "binary":
             result = bin(result)
-            print( result)
         result = str(result)
     except Exception:
         result = "error"
@@ -148,7 +141,7 @@ def calcAnswer(expression):
         f.write(dt_string + " " + FORMAT_TYPE + ": " + result + "\n")
     
     return result
-    #TODO PRINT TO FILE
+    #TODO CLEAR ON DISPLAY FOCUS LOSS AFTER DISPLAYING ANSWER
 
 
 def main():
@@ -156,7 +149,7 @@ def main():
     calcWindow = CalcWindow()
     calcWindow.show()
     Calc(model=calcAnswer, view=calcWindow)
-    sys.exit(calcApp.exec())
+    calcApp.exec()
 
 
 if __name__ == "__main__":
